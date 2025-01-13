@@ -1,0 +1,10 @@
+model Review {
+  id           String   @id @default(uuid())
+  name         String
+  description  String
+  rating       Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  clubReviewed Club     @relation(fields: [clubId], references: [id])
+  clubId       String
+}

@@ -1,0 +1,9 @@
+model Club {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  rating      Int
+  reviews     Review[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
