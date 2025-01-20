@@ -7,23 +7,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Club {
-  id          String   @id @default(uuid())
-  name        String
-  description String
-  rating      Int
-  reviews     Review[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+model Recipe {
+  id           Int      @id @default(autoincrement())
+  title        String
+  ingredients  String
+  instructions String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  reviews      Review[] @relation("RecipeReviews")
 }
 
 model Review {
-  id          String   @id @default(uuid())
-  name        String
-  description String
-  rating      Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  Club        Club?    @relation(fields: [clubId], references: [id])
-  clubId      String?
+  id        Int      @id @default(autoincrement())
+  rating    Int
+  comment   String
+  createdAt DateTime @default(now())
+  recipeId  Int
+  recipe    Recipe   @relation("RecipeReviews", fields: [recipeId], references: [id])
 }

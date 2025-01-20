@@ -1,4 +1,5 @@
 @use 'app/(pages)/_globals/mixins';
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap'); 
 
 .container {
     display: flex;
@@ -8,6 +9,7 @@
     width: 100%;
     position: relative;
     padding: var(--large-spacer);
+    
     @include mixins.phone {
         padding: var(--medium-spacer);
     }
@@ -36,6 +38,27 @@
 
         > h1 {
             color: var(--text-light);
+            font-family: "Homemade Apple";
+        }
+
+        .button {
+            
+            margin-top: 20px;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: var(--text-light);
+            font-size: 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            
+            &:hover {
+                background-color: var(--secondary);
+            }
+            
+            margin-left: auto;
+            margin-right: auto;
         }
     }
 }

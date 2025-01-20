@@ -1,0 +1,78 @@
+@use 'app/(pages)/_globals/mixins';
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap'); 
+
+.client-component {
+  text-align: center;
+  margin-top: var(--small-spacer);
+
+  h1 {
+    font-family: "Homemade Apple";
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin-bottom: var(--medium-spacer);
+  }
+
+  .recipe-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--medium-spacer);
+    justify-content: center;
+    padding: 0 var(--medium-spacer);
+    margin-bottom: var(--large-spacer);
+  }
+
+  .recipe-card {
+    background-color: #ffffff;
+    padding: var(--spacer);
+    border-radius: var(--b-radius);
+    box-shadow: 0 10px 10px rgba(77, 39, 1, 0.1), 
+                0 -10px 10px rgba(77, 39, 1, 0.1), 
+                10px 0 10px rgba(77, 39, 1, 0.1), 
+                -10px 0 10px rgba(77, 39, 1, 0.1); 
+    width: calc(100% - 40px);
+    max-width: 400px;
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 15px rgba(77, 39, 1, 0.15),
+                  0 -15px 15px rgba(77, 39, 1, 0.15),
+                  15px 0 15px rgba(77, 39, 1, 0.15),
+                  -15px 0 15px rgba(77, 39, 1, 0.15);
+    }
+  
+    &:active {
+      transform: scale(1.05);
+      box-shadow: 0 20px 20px rgba(77, 39, 1, 0.2),
+                  0 -20px 20px rgba(77, 39, 1, 0.2),
+                  20px 0 20px rgba(77, 39, 1, 0.2),
+                  -20px 0 20px rgba(77, 39, 1, 0.2);
+    }
+    
+
+    h2 {
+        font-family: "Merriweather";
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: var(--tiny-spacer);
+    }
+
+    p {
+      font-size: 1rem;
+      color: var(--text-dark);
+      margin-bottom: var(--tiny-spacer);
+
+      strong {
+        font-weight: bold;
+        color: var(--primary);
+      }
+    }
+  }
+
+  .no-recipes {
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-top: var(--small-spacer);
+  }
+}

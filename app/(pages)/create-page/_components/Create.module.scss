@@ -1,0 +1,104 @@
+@use 'app/(pages)/_globals/mixins';
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: var(--small-spacer);
+  background-color: #ffffff;
+  border-radius: var(--b-radius);
+  box-shadow: 0 10px 5px rgba(77, 39, 1, 0.1), 
+                0 -10px 10px rgba(77, 39, 1, 0.1), 
+                5px 0 10px rgba(77, 39, 1, 0.1), 
+                -5px 0 10px rgba(77, 39, 1, 0.1); 
+}
+
+.heading {
+  font-family: "Homemade Apple";
+  text-align: center;
+  font-size: 2rem;
+  color: var(--text-dark);
+  margin-bottom: var(--small-spacer);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--small-spacer);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-family: "Merriweather";
+  font-size: 18px;
+  color: var(--text-dark);
+  margin-bottom: var(--tiny-spacer);
+}
+
+.input,
+.textarea {
+  padding: var(--tiny-spacer);
+  border: 1px solid #ccc;
+  border-radius: var(--b-radius);
+  font-size: 15px;
+  width: 100%;
+  
+  box-sizing: border-box;
+}
+.input {
+  height: 50px; 
+  resize: none;
+}
+
+.textarea {
+  resize: none;
+  height: 150px; 
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.submitButton {
+  padding: 12px;
+  background-color: var(--primary);
+  color: var(--text-light);
+  font-size: 1.2rem;
+  border: none;
+  border-radius: var(--b-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--secondary);
+  }
+}
+
+.createdRecipe {
+  margin-top: var(--small-spacer);
+  padding: var(--small-spacer);
+  background-color: var(--light-background);
+  border: 1px solid var(--primary);
+  border-radius: var(--b-radius);
+  color: var(--text-dark);
+}
+
+.createdHeading {
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+.createdRecipeDetails {
+  background-color: #f1f1f1;
+  padding: var(--small-spacer);
+  border-radius: var(--b-radius);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 0.9rem;
+}

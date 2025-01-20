@@ -1,12 +1,12 @@
 import { mergeTypeDefs } from '@graphql-tools/merge';
 
 
-import Club from './Club.js';
+import Recipe from './Recipe.js';
 import Review from './Review.js';
 
 const allTypeDefs = [];
 
-const modules = [ Club, Review];
+const modules = [Recipe, Review];
 modules.forEach((module) => {
   allTypeDefs.push(module);
 });

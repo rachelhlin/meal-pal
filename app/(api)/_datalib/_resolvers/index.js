@@ -1,12 +1,11 @@
 import { mergeResolvers } from '@graphql-tools/merge';
 
-
-import Club from './Club.js';
+import Recipe from './Recipe.js';
 import Review from './Review.js';
 
 const allResolvers = [];
 
-const modules = [ Club, Review];
+const modules = [Recipe, Review];
 modules.forEach((module) => {
   allResolvers.push(module);
 });
