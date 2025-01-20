@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import Image from 'next/image';
 
 import styles from './Hero.module.scss';
@@ -15,6 +18,9 @@ export default function Hero() {
       </div>
       <div className={styles.welcome}>
         <h1>Looking for recipes?</h1>
+        <Link href="/explore-page" className={styles.button}>
+          Explore Now
+        </Link>
       </div>
     </div>
   );

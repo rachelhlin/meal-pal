@@ -11,10 +11,9 @@ export default function Footer({ navLinks }: { navLinks: NavLink[] }) {
     <div className={styles.container}>
       <div className={styles.content_container}>
         <div className={styles.description}>
-          <h2>Platform Team Demo</h2>
+          <h2>Meal Buddy</h2>
           <p>
-            This footer was designed so that you can practice writing efficient
-            HTML/CSS while getting familiar with our codebase.
+            Explore Recipes or Create Some of Your Own!
           </p>
         </div>
         <div className={styles.navigation}>
@@ -30,22 +29,7 @@ export default function Footer({ navLinks }: { navLinks: NavLink[] }) {
               })}
             </div>
           </div>
-          <div className={styles.projects}>
-            <h2>Projects</h2>
-            <div className={styles.project_link_columns}>
-              <div>
-                {/* Should be done with a loop */}
-                <Link href="/project/1">Project 1</Link>
-                <Link href="/project/2">Project 2</Link>
-                <Link href="/project/3">Project 3</Link>
-              </div>
-              <div>
-                <Link href="/project/4">Project 4</Link>
-                <Link href="/project/5">Project 5</Link>
-                <Link href="/project/6">Project 6</Link>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
       <p className={styles.credit}>

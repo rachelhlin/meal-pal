@@ -1,4 +1,5 @@
 @use 'app/(pages)/_globals/mixins';
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap'); 
 
 $scale: 1.04;
 
@@ -9,6 +10,7 @@ $scale: 1.04;
 }
 
 .container {
+    
     position: fixed;
     z-index: 10;
     width: 100%;
@@ -23,7 +25,9 @@ $scale: 1.04;
     background-color: var(--primary);
 
     >h2 {
+        font-family: "Homemade Apple";
         color: var(--text-light);
+        font-size: 30px;
     }
 }
 
@@ -36,11 +40,13 @@ $scale: 1.04;
 
     .links {
         display: flex;
+        
         flex-direction: row;
         gap: var(--spacer);
         color: var(--text-light);
 
         >* {
+            
             padding: var(--tiny-spacer);
             @include mixins.tablet {
                 text-align: center;

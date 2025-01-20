@@ -24,21 +24,21 @@ export default function ExampleClientComponent() {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const res = await sendApolloRequest(query);  
-        setRecipes(res.data.recipes);  
+        const res = await sendApolloRequest(query);
+        setRecipes(res.data.recipes);
       } catch (error) {
         console.error('Error fetching recipes:', error);
       }
     };
 
-    fetchRecipes(); // Call the function to fetch recipes
-  }, []); // Empty dependency array to run this once when the component mounts
+    fetchRecipes();
+  }, []);
 
   return (
     <div className={styles['client-component']}>
       <h1>Recipe List</h1>
       {recipes ? (
-        <div className={styles['recipe-list']}>
+        <div className={styles['recipe-grid']}>
           {recipes.map((recipe) => (
             <div key={recipe.id} className={styles['recipe-card']}>
               <h2>{recipe.title}</h2>
