@@ -1,0 +1,65 @@
+@use 'app/(pages)/_globals/mixins';
+
+.client-component {
+    text-align: center;
+    margin-top: 20px;
+  
+    h1 {
+      font-size: 2rem;
+      color: #333;
+    }
+  
+    button {
+      background-color: #007bff;
+      color: white;
+      font-size: 1rem;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  
+    .recipe-list {
+      margin-top: 20px;
+  
+      .recipe-card {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        text-align: left;
+        max-width: 800px;
+        margin: 0 auto;
+  
+        h2 {
+          font-size: 1.5rem;
+          color: #007bff;
+          margin-bottom: 10px;
+        }
+  
+        p {
+          font-size: 1rem;
+          color: #333;
+          margin-bottom: 8px;
+  
+          strong {
+            font-weight: bold;
+            color: #007bff;
+          }
+        }
+      }
+    }
+  
+    .no-recipes {
+      font-size: 1rem;
+      color: #666;
+      margin-top: 20px;
+    }
+  }
+  

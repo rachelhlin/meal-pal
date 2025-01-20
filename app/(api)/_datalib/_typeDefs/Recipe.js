@@ -19,6 +19,7 @@ const typeDefs = gql`
 
   type Query {
     recipe(id: ID!): Recipe
+    recipeSearch(title: String!): Recipe
     recipes: [Recipe]
   }
 

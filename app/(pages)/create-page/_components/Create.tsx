@@ -2,6 +2,7 @@
 
 import { gql } from 'graphql-tag';
 import { useState } from 'react';
+import styles from './Create.module.scss';
 
 import sendApolloRequest from '@utils/sendApolloRequest';
 
@@ -16,7 +17,7 @@ const mutation = gql`
   }
 `;
 
-export default function CreateRecipeClientComponent() {
+export default function Create() {
   const [title, setTitle] = useState('');
   const [ingredients, setIngredients] = useState('');
   const [instructions, setInstructions] = useState('');
@@ -44,48 +45,51 @@ export default function CreateRecipeClientComponent() {
   };
 
   return (
-    <div>
-      <h1>Create a New Recipe</h1>
+    <div className={styles.container}>
+      <h1 className={styles.heading}>Create a New Recipe</h1>
 
-      <form onSubmit={handleCreateRecipe}>
-        <div>
-          <label htmlFor="title">Title</label>
+      <form onSubmit={handleCreateRecipe} className={styles.form}>
+        <div className={styles.formGroup}>
+          <label htmlFor="title" className={styles.label}>Title</label>
           <input
             type="text"
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
+            className={styles.input}
           />
         </div>
 
-        <div>
-          <label htmlFor="ingredients">Ingredients</label>
+        <div className={styles.formGroup}>
+          <label htmlFor="ingredients" className={styles.label}>Ingredients</label>
           <textarea
             id="ingredients"
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
             required
+            className={styles.textarea}
           />
         </div>
 
-        <div>
-          <label htmlFor="instructions">Instructions</label>
+        <div className={styles.formGroup}>
+          <label htmlFor="instructions" className={styles.label}>Instructions</label>
           <textarea
             id="instructions"
             value={instructions}
             onChange={(e) => setInstructions(e.target.value)}
             required
+            className={styles.textarea}
           />
         </div>
 
-        <button type="submit">Create Recipe</button>
+        <button type="submit" className={styles.submitButton}>Create Recipe</button>
       </form>
 
       {createdRecipe && (
-        <div>
-          <h2>Recipe Created</h2>
-          <pre>{JSON.stringify(createdRecipe, null, 2)}</pre>
+        <div className={styles.createdRecipe}>
+          <h2 className={styles.createdHeading}>Recipe Created</h2>
+          <pre className={styles.createdRecipeDetails}>{JSON.stringify(createdRecipe, null, 2)}</pre>
         </div>
       )}
     </div>

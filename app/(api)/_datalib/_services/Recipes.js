@@ -19,6 +19,17 @@ export default class Recipes {
     return prisma.recipe.findUnique({ where: { id } });
   }
 
+  static async findMany({ title }) {
+      return prisma.recipe.findMany({
+        where: {
+          title: {
+            contains: title, 
+          },
+        },
+      });
+    }
+    
+
   static async findAll() {
     return prisma.recipe.findMany();
   }

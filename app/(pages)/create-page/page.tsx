@@ -1,9 +1,9 @@
-import RecipeSearch from './_components/CreateClientComponent';
+import Create from './_components/Create';
 
 const Search: React.FC = () => {
   return (
     <div>
-      <RecipeSearch />
+      <Create />
     </div>
   );
 };

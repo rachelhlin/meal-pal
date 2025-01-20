@@ -10,6 +10,7 @@ const resolvers = {
   Query: {
     recipe: (_, { id }) => Recipes.find({ id }),
     recipes: () => Recipes.findAll(),
+    recipeSearch: (_, { title }) => Recipes.findMany({ title }),
   },
 
   Mutation: {
