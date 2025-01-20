@@ -1,52 +1,20 @@
-import Reviews from '../_services/Review.js';
+import Reviews from '../_services/Reviews.js';
+import Recipes from '../_services/Recipes.js';
 
 const resolvers = {
   Review: {
-    // Resolves the `clubReviewed` field for a Review
-    clubReviewed: async (parent) => {
-      try {
-        return await prisma.club.findUnique({
-          where: { id: parent.clubId },
-        });
-      } catch (e) {
-        console.error("Error resolving clubReviewed:", e.message);
-        return null;
-      }
+    recipe: (review) => {
+      return Recipes.find({ id: review.recipeId });
     },
   },
 
   Query: {
-    // Fetch a single review by its ID
-    review: async (_, { id }) => {
-      try {
-        return await Reviews.find({ id });
-      } catch (e) {
-        console.error("Error fetching review:", e.message);
-        throw new Error("Failed to fetch review");
-      }
-    },
-
-    // Fetch all reviews
-    reviews: async () => {
-      try {
-        return await Reviews.findAll();
-      } catch (e) {
-        console.error("Error fetching reviews:", e.message);
-        throw new Error("Failed to fetch reviews");
-      }
-    },
+    review: (_, { id }) => Reviews.find({ id }),
+    reviews: () => Reviews.findAll(),
   },
 
   Mutation: {
-    // Create a new review
-    createReview: async (_, { input }) => {
-      try {
-        return await Reviews.create({ input });
-      } catch (e) {
-        console.error("Error creating review:", e.message);
-        throw new Error("Failed to create review");
-      }
-    },
+    createReview: (_, { input }) => Reviews.create({ input }),
   },
 };
 

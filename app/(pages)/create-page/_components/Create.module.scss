@@ -1,0 +1,83 @@
+@use 'app/(pages)/_globals/mixins';
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  input,
+  textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+
+  button {
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
+
+.created-recipe {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #e9f7fd;
+  border: 1px solid #007bff;
+  border-radius: 8px;
+  color: #333;
+
+  h2 {
+    font-size: 1.5rem;
+    color: #007bff;
+  }
+
+  pre {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.9rem;
+  }
+}

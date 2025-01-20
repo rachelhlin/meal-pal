@@ -49,7 +49,7 @@ export default function Footer({ navLinks }: { navLinks: NavLink[] }) {
         </div>
       </div>
       <p className={styles.credit}>
-        Designed & develped with 🤍 by #include at Davis @2023
+        Designed & developed with 🤍 by Rachel Lin @2025
       </p>
     </div>
   );

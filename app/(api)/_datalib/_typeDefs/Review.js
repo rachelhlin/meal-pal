@@ -3,19 +3,17 @@ import gql from 'graphql-tag';
 const typeDefs = gql`
   type Review {
     id: ID!
-    name: String!
-    description: String!
     rating: Int!
-    clubReviewed: Club!
-    clubID: String
-   
+    comment: String!
+    createdAt: String!
+    updatedAt: String!
+    recipe: Recipe
   }
 
-  input reviewInput {
-    name: String!
-    description: String!
+  input ReviewInput {
     rating: Int!
-    clubID: String!
+    comment: String!
+    recipeId: ID!
   }
 
   type Query {
@@ -24,7 +22,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createReview(input: reviewInput!): Review
+    createReview(input: ReviewInput!): Review
   }
 `;
+
 export default typeDefs;
