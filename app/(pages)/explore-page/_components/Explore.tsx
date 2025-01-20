@@ -36,7 +36,7 @@ export default function ExampleClientComponent() {
 
   return (
     <div className={styles['client-component']}>
-      <h1>Recipe List</h1>
+      <h1>Explore Recipes!</h1>
       {recipes ? (
         <div className={styles['recipe-grid']}>
           {recipes.map((recipe) => (
