@@ -20,7 +20,6 @@ const query = gql`
 export default function ExampleClientComponent() {
   const [recipes, setRecipes] = useState(null);
 
-  // Fetch recipes when the component mounts
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
