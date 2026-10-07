@@ -1,6 +1,11 @@
 import gql from 'graphql-tag';
 
 const typeDefs = gql`
+  type Author {
+    id: ID!
+    name: String!
+  }
+
   type Recipe {
     id: ID!
     title: String!
@@ -8,7 +13,10 @@ const typeDefs = gql`
     instructions: String!
     createdAt: String!
     updatedAt: String!
-    reviews: [Review]
+    author: Author
+    reviews: [Review!]!
+    averageRating: Float
+    reviewCount: Int!
   }
 
   input RecipeInput {
@@ -19,12 +27,13 @@ const typeDefs = gql`
 
   type Query {
     recipe(id: ID!): Recipe
-    recipeSearch(title: String!): Recipe
-    recipes: [Recipe]
+    recipes(search: String): [Recipe!]!
   }
 
   type Mutation {
-    createRecipe(input: RecipeInput!): Recipe
+    createRecipe(input: RecipeInput!): Recipe!
+    updateRecipe(id: ID!, input: RecipeInput!): Recipe!
+    deleteRecipe(id: ID!): Boolean!
   }
 `;
 

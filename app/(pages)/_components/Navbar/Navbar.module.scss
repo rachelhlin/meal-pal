@@ -108,3 +108,15 @@ $scale: 1.04;
         transform: scale($scale);
     }
 }
+.links a[aria-current='page'] {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.authButton {
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}

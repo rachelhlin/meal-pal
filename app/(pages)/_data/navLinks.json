@@ -1,15 +1,5 @@
 [
-    {
-      "name": "Home",
-      "slug": "/"
-    },
-    {
-      "name": "Explore",
-      "slug": "/explore-page"
-    },
-    {
-      "name": "Create",
-      "slug": "/create-page"
-    }
-    
-  ]
+  { "name": "Home", "slug": "/" },
+  { "name": "Explore", "slug": "/explore" },
+  { "name": "Create", "slug": "/create" }
+]

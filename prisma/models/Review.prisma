@@ -5,4 +5,9 @@ model Review {
   createdAt DateTime @default(now())
   recipeId  Int
   recipe    Recipe   @relation("RecipeReviews", fields: [recipeId], references: [id])
+  authorId  String?
+  author    User?    @relation(fields: [authorId], references: [id], onDelete: SetNull)
+
+  @@index([recipeId])
+  @@index([authorId])
 }

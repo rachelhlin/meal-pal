@@ -18,7 +18,7 @@ export default function Hero() {
       </div>
       <div className={styles.welcome}>
         <h1>Looking for recipes?</h1>
-        <Link href="/explore-page" className={styles.button}>
+        <Link href="/explore" className={styles.button}>
           Explore Now
         </Link>
       </div>

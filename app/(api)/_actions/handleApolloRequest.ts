@@ -1,26 +1,31 @@
 'use server';
 
+import { headers } from 'next/headers';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
 import handler from '@datalib/apolloServer';
 
 export default async function handleApolloRequest(
   query: string,
-  variables: object,
+  variables: object = {},
   revalidateCache?: { path?: string; type?: 'page' | 'layout'; tag?: string }
 ) {
-  const headers = {
-    'Content-Type': 'application/json',
-  };
+  // Forward the visitor's cookies so the API can tell who is signed in.
+  let cookie: string | null = null;
+  try {
+    cookie = headers().get('cookie');
+  } catch {
+    // no request scope (e.g. build time): treat as signed out
+  }
 
-  // We use a dummy URL since we're not actually querying a real endpoint
+  // Dummy URL: we call the Apollo handler in-process rather than over the network.
   const req = new Request('http://a', {
     method: 'POST',
-    headers: headers,
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
+    headers: {
+      'Content-Type': 'application/json',
+      ...(cookie ? { cookie } : {}),
+    },
+    body: JSON.stringify({ query, variables }),
   });
 
   const res = await handler(req);

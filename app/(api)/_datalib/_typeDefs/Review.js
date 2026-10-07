@@ -6,7 +6,7 @@ const typeDefs = gql`
     rating: Int!
     comment: String!
     createdAt: String!
-    updatedAt: String!
+    author: Author
     recipe: Recipe
   }
 
@@ -18,11 +18,11 @@ const typeDefs = gql`
 
   type Query {
     review(id: ID!): Review
-    reviews: [Review]
   }
 
   type Mutation {
-    createReview(input: ReviewInput!): Review
+    createReview(input: ReviewInput!): Review!
+    deleteReview(id: ID!): Boolean!
   }
 `;
 
