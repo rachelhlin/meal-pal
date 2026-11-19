@@ -2,15 +2,16 @@
 
 import SubmitButton from '../SubmitButton/SubmitButton';
 
-// A delete button that asks "are you sure?" before running a server action.
 export default function DeleteButton({
   action,
   confirmText,
   children = 'Delete',
+  small = false,
 }: {
   action: () => Promise<void>;
   confirmText: string;
   children?: React.ReactNode;
+  small?: boolean;
 }) {
   return (
     <form
@@ -19,7 +20,9 @@ export default function DeleteButton({
         if (!window.confirm(confirmText)) e.preventDefault();
       }}
     >
-      <SubmitButton variant="danger">{children}</SubmitButton>
+      <SubmitButton variant="danger" small={small}>
+        {children}
+      </SubmitButton>
     </form>
   );
 }

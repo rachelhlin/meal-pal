@@ -2,7 +2,7 @@ import { print, type DocumentNode } from 'graphql';
 
 import handleApolloRequest from '@actions/handleApolloRequest';
 
-// Runs a query/mutation and returns `data`, throwing if GraphQL reports errors.
+// throws on graphql errors so callers can just try/catch
 export default async function gqlRequest<T>(
   query: DocumentNode,
   variables: Record<string, unknown> = {}

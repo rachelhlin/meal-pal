@@ -1,0 +1,28 @@
+{
+  "recipes": [
+    { "id": 1, "title": "Classic Pancakes", "ingredients": "1 1/2 cups flour\n2 tbsp sugar\n2 tsp baking powder\n1 1/4 cups milk\n1 egg\n3 tbsp melted butter\nsalt" },
+    { "id": 2, "title": "Tomato Basil Pasta", "ingredients": "8 oz spaghetti\n2 cups cherry tomatoes\n3 cloves garlic\nfresh basil\nolive oil\nparmesan\nsalt" },
+    { "id": 3, "title": "Vegetable Fried Rice", "ingredients": "3 cups cooked rice\n2 eggs\n1 cup frozen peas\n1 carrot\n3 tbsp soy sauce\n2 green onions\nvegetable oil" },
+    { "id": 4, "title": "Chicken Stir Fry", "ingredients": "1 lb chicken breast\n1 bell pepper\n1 head broccoli\n3 tbsp soy sauce\n1 tbsp ginger\n2 cloves garlic\nvegetable oil" },
+    { "id": 5, "title": "Guacamole", "ingredients": "3 ripe avocados\n1 lime\n1/2 red onion\n1 jalapeno\nfresh cilantro\nsalt" },
+    { "id": 6, "title": "Scrambled Eggs on Toast", "ingredients": "3 eggs\n1 tbsp butter\n2 slices bread\nsalt\nblack pepper" },
+    { "id": 7, "title": "Baba Ganoush", "ingredients": "2 eggplants\n3 tbsp tahini\n1 lemon\n2 cloves garlic\nolive oil\nsalt" },
+    { "id": 8, "title": "Banana Bread", "ingredients": "3 ripe bananas\n2 cups flour\n1 tsp baking soda\n1/2 cup sugar\n1 egg\n1/3 cup melted butter\nsalt" },
+    { "id": 9, "title": "Greek Salad", "ingredients": "2 tomatoes\n1 cucumber\n1/2 red onion\nfeta cheese\nkalamata olives\nolive oil\noregano" },
+    { "id": 10, "title": "Black Bean Tacos", "ingredients": "1 can black beans\n8 tortillas\n1 avocado\n1 lime\nsalsa\nshredded cheese\ncumin" }
+  ],
+  "cases": [
+    { "pantry": ["flour", "milk", "eggs", "butter", "sugar", "baking powder"], "expected": 1 },
+    { "pantry": ["spaghetti", "tomatoes", "garlic", "basil", "parmesan"], "expected": 2 },
+    { "pantry": ["rice", "eggs", "peas", "carrot", "soy sauce"], "expected": 3 },
+    { "pantry": ["chicken breasts", "broccoli", "bell peppers", "soy sauce", "garlic", "ginger"], "expected": 4 },
+    { "pantry": ["avocados", "lime", "red onion", "cilantro"], "expected": 5 },
+    { "pantry": ["eggs", "bread", "butter"], "expected": 6 },
+    { "pantry": ["eggplant", "tahini", "lemon", "garlic"], "expected": 7 },
+    { "pantry": ["bananas", "flour", "eggs", "sugar", "butter", "baking soda"], "expected": 8 },
+    { "pantry": ["tomatoes", "cucumber", "feta", "olives", "red onion"], "expected": 9 },
+    { "pantry": ["black beans", "tortillas", "avocado", "salsa", "cheese"], "expected": 10 },
+    { "pantry": ["Eggs", "Bread"], "expected": 6, "note": "tiny pantry" },
+    { "pantry": ["tomato", "onion", "olive oil"], "expected": 9, "note": "ambiguous: also fits pasta" }
+  ]
+}

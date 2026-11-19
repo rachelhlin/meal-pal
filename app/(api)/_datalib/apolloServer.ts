@@ -13,8 +13,7 @@ const server = new ApolloServer({
 }) as ApolloServer<object>;
 
 const handler = startServerAndCreateNextHandler<NextRequest>(server, {
-  // Identify the caller from their session cookie. Resolvers read `userId`
-  // from this context, so identity can never be supplied by the client.
+  // user comes from the session cookie, never from the request body
   context: async (req) => {
     const session = await auth.api.getSession({ headers: req.headers });
     return { userId: session?.user.id ?? null };

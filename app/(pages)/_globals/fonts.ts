@@ -1,17 +1,17 @@
-import { Inter, Montserrat } from 'next/font/google';
+import { Fredoka, Nunito } from 'next/font/google';
 
-const inter = Inter({
+const fredoka = Fredoka({
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: ['500', '600', '700'],
+  variable: '--font-heading',
 });
 
-const montserrat = Montserrat({
+const nunito = Nunito({
   subsets: ['latin'],
-  variable: '--font-montserrat',
+  variable: '--font-body',
 });
 
-const fonts = [inter, montserrat];
+const fonts = [fredoka, nunito];
 
-const font_variables = fonts.map((font) => font.variable);
-const font_string = font_variables.join(' ');
+const font_string = fonts.map((font) => font.variable).join(' ');
 export default font_string;

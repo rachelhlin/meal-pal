@@ -25,3 +25,10 @@ export interface RecipeDetail extends RecipeSummary {
   instructions: string;
   reviews: Review[];
 }
+
+export interface GroceryItem {
+  id: string;
+  name: string;
+  checked: boolean;
+  recipe: { id: string; title: string } | null;
+}

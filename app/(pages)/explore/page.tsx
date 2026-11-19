@@ -6,7 +6,7 @@ import gqlRequest from '../_utils/gqlRequest';
 import type { RecipeSummary } from '../_utils/types';
 import styles from '../_styles/ui.module.scss';
 
-// Data comes from the DB, so never prerender this at build time.
+// otherwise next tries to build this at deploy time with no db
 export const dynamic = 'force-dynamic';
 export const metadata = { title: 'Explore recipes · Meal Pal' };
 
@@ -48,12 +48,15 @@ export default async function ExplorePage({
   return (
     <main className={styles.page}>
       <h1>Explore recipes</h1>
+      <p className={styles.lead}>
+        Everything the community has shared, newest first.
+      </p>
       <form action="/explore" role="search" className={styles.search}>
         <input
           type="search"
           name="q"
           defaultValue={q}
-          placeholder="Search by title…"
+          placeholder="Search recipes, e.g. banana bread"
           aria-label="Search recipes"
         />
         <button type="submit" className={styles.button}>
@@ -66,10 +69,15 @@ export default async function ExplorePage({
           We couldn&apos;t load recipes right now. Please try again.
         </p>
       ) : recipes.length === 0 ? (
-        <p className={styles.muted}>
-          {q ? `No recipes match “${q}”.` : 'No recipes yet.'}{' '}
-          <Link href="/create">Share one!</Link>
-        </p>
+        <div className={styles.emptyState}>
+          <p>
+            {q ? `No recipes match “${q}” yet.` : 'No recipes yet.'} Want to add
+            one?
+          </p>
+          <Link href="/create" className={styles.button}>
+            Share a recipe
+          </Link>
+        </div>
       ) : (
         <div className={styles.grid}>
           {recipes.map((recipe) => (

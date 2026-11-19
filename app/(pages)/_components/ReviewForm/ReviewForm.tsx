@@ -23,17 +23,25 @@ export default function ReviewForm({ recipeId }: { recipeId: string }) {
   return (
     <form ref={formRef} action={formAction} className={styles.form}>
       <fieldset className={styles.ratingPicker}>
-        <legend>Your rating</legend>
-        {[1, 2, 3, 4, 5].map((n) => (
-          <label key={n}>
-            <input type="radio" name="rating" value={n} required />
-            {n} ★
-          </label>
-        ))}
+        <legend>How many stars?</legend>
+        <div className={styles.ratingOptions}>
+          {[1, 2, 3, 4, 5].map((n) => (
+            <label key={n}>
+              <input type="radio" name="rating" value={n} required />
+              {n}
+            </label>
+          ))}
+        </div>
       </fieldset>
       <label>
-        Comment
-        <textarea name="comment" required rows={3} maxLength={2000} />
+        Your note
+        <textarea
+          name="comment"
+          required
+          rows={4}
+          maxLength={2000}
+          placeholder="What worked, what you'd change"
+        />
       </label>
       {state.error && (
         <p role="alert" className={styles.error}>
@@ -43,7 +51,7 @@ export default function ReviewForm({ recipeId }: { recipeId: string }) {
       {state.success && (
         <p className={styles.success}>Thanks for the review!</p>
       )}
-      <SubmitButton>Post review</SubmitButton>
+      <SubmitButton fullWidth>Post review</SubmitButton>
     </form>
   );
 }

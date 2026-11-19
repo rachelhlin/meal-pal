@@ -1,92 +1,53 @@
-@use 'app/(pages)/_globals/mixins';
-@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap'); 
-
-.container {
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
-    background-color: var(--secondary);
-    .credit {
-        width: 100%;
-        padding: var(--tiny-spacer);
-        text-align: center;
-        background-color: var(--primary);
-        color: var(--text-light);
-        @include mixins.phone {
-            background: none;
-            margin-bottom: var(--medium-spacer);
-            color: var(--text-dark);
-        }
-    }
+.footer {
+  background: var(--cocoa);
+  color: var(--text-light);
 }
 
-.content_container {
-    /* box sizing */
-    width: 100%;
-    padding: var(--medium-spacer);
-
-    /* flexbox */
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: var(--medium-spacer);
-    @include mixins.phone {
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        text-align: center;
-    }
-
-    h2 {
-        color: var(--primary);
-        font-size: 1.5rem;
-        margin-bottom: var(--tiny-spacer);
-        font-family: "Homemade Apple";
-    }
-
-    .description>p {
-        @include mixins.phone {
-            display: none;
-        }
-    }
+.inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 36px 32px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.navigation {
-    display: flex;
-    flex-direction: row;
-    flex-shrink: 0;
-    gap: var(--medium-spacer);
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  p {
+    color: var(--text-light);
+    font-size: 15px;
+  }
+}
 
-    @include mixins.phone {
-        flex-direction: column;
+.name {
+  font-family: var(--font-heading-stack);
+  font-weight: 700;
+  font-size: 22px !important;
+  line-height: 1.1;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  a {
+    color: var(--text-light);
+    font-weight: 700;
+    &:hover {
+      color: var(--butter);
     }
+  }
+}
 
-    .learn_more, .projects {
-        display: flex;
-        flex-direction: column;
-
-        .learn_more_links {
-            display: flex;
-            flex-direction: column;
-            gap: var(--tiny-spacer);
-        }
-
-        .project_link_columns {
-            display: flex;
-            flex-direction: row;
-            gap: var(--tiny-spacer);
-            @include mixins.phone {
-                flex-direction: column;
-            }
-
-            >div {
-                display: flex;
-                flex-direction: column;
-                gap: var(--tiny-spacer);
-            }
-        }
-    }
+.credit {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 32px 28px;
+  font-size: 14px;
+  color: #e9cfae;
 }

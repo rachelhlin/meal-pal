@@ -6,6 +6,7 @@ import { RxHamburgerMenu, RxCross2 } from 'react-icons/rx';
 import styles from './Navbar.module.scss';
 import useToggle from '@hooks/useToggle';
 import AuthButton from '../AuthButton/AuthButton';
+import LogoIcon from '../Mascot/LogoIcon';
 
 interface NavLink {
   name: string;
@@ -15,46 +16,51 @@ interface NavLink {
 export default function Navbar({ navLinks }: { navLinks: NavLink[] }) {
   const pathname = usePathname();
   const {
-    state: active,
-    toggleState: toggleActive,
-    setOff: setInactive,
+    state: open,
+    toggleState: toggleOpen,
+    setOff: close,
   } = useToggle(false);
 
   const isCurrent = (slug: string) =>
     slug === '/' ? pathname === '/' : pathname.startsWith(slug);
 
   return (
-    <div className={styles.relative_wrapper}>
-      <div className={styles.container}>
-        <h2>
-          <Link href="/" style={{ color: 'inherit', textDecoration: 'none' }}>
-            Meal Pal
-          </Link>
-        </h2>
-        <div className={styles.nav_container}>
-          <div className={`${styles.links} ${active ? styles.active : ''}`}>
-            {navLinks.map((link) => (
-              <Link
-                key={link.slug}
-                href={link.slug}
-                onClick={setInactive}
-                aria-current={isCurrent(link.slug) ? 'page' : undefined}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <AuthButton className={styles.authButton} />
-          </div>
-          <button
-            className={styles.menu}
-            onClick={toggleActive}
-            aria-label="Toggle menu"
-            aria-expanded={active}
-          >
-            {active ? <RxCross2 /> : <RxHamburgerMenu />}
-          </button>
-        </div>
-      </div>
+    <div className={styles.wrapper}>
+      <header className={styles.bar}>
+        <Link href="/" className={styles.brand} onClick={close}>
+          <LogoIcon />
+          <span>Meal Pal</span>
+        </Link>
+
+        <button
+          className={styles.menuButton}
+          onClick={toggleOpen}
+          aria-label="Menu"
+          aria-expanded={open}
+          aria-controls="main-nav"
+        >
+          {open ? <RxCross2 /> : <RxHamburgerMenu />}
+        </button>
+
+        <nav
+          id="main-nav"
+          aria-label="Main"
+          className={`${styles.links} ${open ? styles.open : ''}`}
+        >
+          {navLinks.map((link) => (
+            <Link
+              key={link.slug}
+              href={link.slug}
+              onClick={close}
+              className={styles.link}
+              aria-current={isCurrent(link.slug) ? 'page' : undefined}
+            >
+              {link.name}
+            </Link>
+          ))}
+          <AuthButton className={styles.authButton} />
+        </nav>
+      </header>
     </div>
   );
 }

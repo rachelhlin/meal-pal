@@ -1,10 +1,10 @@
 'use client';
 
+import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { authClient } from '../../_utils/authClient';
 
-// Navbar sign in / sign out control.
 export default function AuthButton({ className }: { className?: string }) {
   const { data: session, isPending } = authClient.useSession();
   const pathname = usePathname();
@@ -13,19 +13,14 @@ export default function AuthButton({ className }: { className?: string }) {
   if (isPending) return null;
 
   if (!session) {
+    const next = pathname === '/sign-in' ? '/explore' : pathname;
     return (
-      <button
-        type="button"
+      <Link
+        href={`/sign-in?next=${encodeURIComponent(next)}`}
         className={className}
-        onClick={() =>
-          authClient.signIn.social({
-            provider: 'github',
-            callbackURL: pathname,
-          })
-        }
       >
         Sign in
-      </button>
+      </Link>
     );
   }
 

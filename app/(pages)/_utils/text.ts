@@ -1,5 +1,4 @@
-// Turns a free-text block into clean list items, dropping blank lines and
-// leading bullets/numbers ("- eggs", "1. Mix") so we can render real lists.
+// strips "- " / "1. " so people can paste lists however they want
 export function splitLines(text: string): string[] {
   return text
     .split('\n')

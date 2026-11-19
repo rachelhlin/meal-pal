@@ -1,0 +1,10 @@
+Saved pantry + grocery list. Apply the cozy redesign zip first.
+
+1) From your meal-pal folder:
+   unzip -o ~/Downloads/pantry-grocery-files.zip -d /tmp && cp -R /tmp/pantry-grocery-files/. . && rm START-HERE.txt
+
+2) Create the new tables (name the migration e.g. add_pantry_grocery):
+   npm run db:migrate
+
+3) npm test        (should say pass 18, fail 0)
+   npm run dev     -> sign in, add ingredients on the home page, then try /groceries

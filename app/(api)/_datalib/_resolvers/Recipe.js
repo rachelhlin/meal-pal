@@ -2,7 +2,7 @@ import Recipes from '../_services/Recipes.js';
 import Users from '../_services/Users.js';
 import { requireUser } from '../_utils/validation.js';
 
-// Memoize the rating aggregate on the parent so averageRating + reviewCount share one query.
+// averageRating and reviewCount both need this, only query once
 const summary = (recipe) =>
   (recipe._summary ??= Recipes.ratingSummary(recipe.id));
 

@@ -1,5 +1,7 @@
 import Link from 'next/link';
+
 import styles from './Footer.module.scss';
+import LogoIcon from '../Mascot/LogoIcon';
 
 interface NavLink {
   name: string;
@@ -8,33 +10,26 @@ interface NavLink {
 
 export default function Footer({ navLinks }: { navLinks: NavLink[] }) {
   return (
-    <div className={styles.container}>
-      <div className={styles.content_container}>
-        <div className={styles.description}>
-          <h2>Meal Buddy</h2>
-          <p>
-            Explore Recipes or Create Some of Your Own!
-          </p>
-        </div>
-        <div className={styles.navigation}>
-          <div className={styles.learn_more}>
-            <h2>Learn more</h2>
-            <div className={styles.learn_more_links}>
-              {navLinks.map((link) => {
-                return (
-                  <Link key={link.slug} href={link.slug}>
-                    {link.name}
-                  </Link>
-                );
-              })}
-            </div>
+    <footer className={styles.footer}>
+      <div className={styles.inner}>
+        <div className={styles.brand}>
+          <LogoIcon size={32} steam={false} />
+          <div>
+            <p className={styles.name}>Meal Pal</p>
+            <p>Recipes from home cooks</p>
           </div>
-          
         </div>
+        <nav aria-label="Footer" className={styles.links}>
+          {navLinks.map((link) => (
+            <Link key={link.slug} href={link.slug}>
+              {link.name}
+            </Link>
+          ))}
+        </nav>
       </div>
       <p className={styles.credit}>
-        Designed & developed with 🤍 by Rachel Lin @2025
+        Designed &amp; developed with 🤍 by Rachel Lin @2025
       </p>
-    </div>
+    </footer>
   );
 }

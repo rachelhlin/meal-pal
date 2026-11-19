@@ -10,15 +10,15 @@ export default async function handleApolloRequest(
   variables: object = {},
   revalidateCache?: { path?: string; type?: 'page' | 'layout'; tag?: string }
 ) {
-  // Forward the visitor's cookies so the API can tell who is signed in.
+  // pass the cookie through so the api knows who's logged in
   let cookie: string | null = null;
   try {
     cookie = headers().get('cookie');
   } catch {
-    // no request scope (e.g. build time): treat as signed out
+    // no request (build time), so just treat as logged out
   }
 
-  // Dummy URL: we call the Apollo handler in-process rather than over the network.
+  // url doesn't matter, we call the handler directly instead of over http
   const req = new Request('http://a', {
     method: 'POST',
     headers: {

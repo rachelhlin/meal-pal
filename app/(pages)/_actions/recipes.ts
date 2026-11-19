@@ -56,7 +56,7 @@ const recipeInput = (formData: FormData) => ({
   instructions: field(formData, 'instructions'),
 });
 
-// Clears the client-side router cache so lists/pages don't show stale data.
+// without this the explore page showed old data for a bit after changes
 const refreshAll = () => revalidatePath('/', 'layout');
 
 export async function createRecipeAction(

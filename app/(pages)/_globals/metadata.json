@@ -1,5 +1,6 @@
 {
-    "title": "Meal Buddy",
+    "title": "Meal Pal",
+    "description": "Find recipes from home cooks that use what's already in your kitchen.",
     "icons": {
       "icon": "/icons/mealbuddy.ico"
     }

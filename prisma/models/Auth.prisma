@@ -1,4 +1,4 @@
-// Tables required by Better Auth (https://better-auth.com/docs/concepts/database#core-schema)
+// tables better auth needs: https://better-auth.com/docs/concepts/database#core-schema
 
 model User {
   id            String    @id
@@ -12,6 +12,9 @@ model User {
   accounts      Account[]
   recipes       Recipe[]
   reviews       Review[]
+  aiUsage       AiUsage[]
+  pantryItems   PantryItem[]
+  groceryItems  GroceryItem[]
 
   @@map("user")
 }

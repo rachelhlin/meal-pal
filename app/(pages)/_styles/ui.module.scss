@@ -1,161 +1,962 @@
-$ink: #2b2118;
-$muted: #7a6a5c;
-$accent: #d9480f;
-$accent-dark: #b43a0a;
-$bg: #fdf8f3;
-$line: #eadfd3;
+@use 'app/(pages)/_globals/mixins';
+
+// shared styles for the cozy theme. colors live in globals.scss
 
 @mixin field {
-  font: inherit;
-  padding: 0.6rem 0.75rem;
-  border: 1px solid $line;
-  border-radius: 8px;
+  width: 100%;
+  padding: 13px 20px;
+  border: 2px solid var(--input-border);
+  border-radius: 22px;
   background: #fff;
-  &:focus-visible { outline: 2px solid $accent; outline-offset: 1px; }
-}
-
-.page {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 2rem 1.25rem 4rem;
-  color: $ink;
-  min-height: 70vh;
-
-  h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-  h2 { font-size: 1.25rem; margin: 1.5rem 0 0.5rem; }
-  a { color: $accent; }
-}
-
-.muted { color: $muted; font-size: 0.9rem; }
-.error { color: #b42318; margin: 0.75rem 0; }
-.success { color: #067647; margin: 0.75rem 0; }
-
-.stars { color: #f59f00; letter-spacing: 1px; }
-.starsOff { color: $line; }
-
-.search {
-  display: flex;
-  gap: 0.5rem;
-  margin: 1rem 0 1.5rem;
-  input { @include field; flex: 1; }
-}
-
-.grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1.25rem;
-  background: #fff;
-  border: 1px solid $line;
-  border-radius: 12px;
-  color: $ink !important;
-  text-decoration: none;
-  transition: box-shadow 0.15s, transform 0.15s;
-
-  h2 { margin: 0; font-size: 1.15rem; }
-  &:hover, &:focus-visible {
-    box-shadow: 0 6px 18px rgba(43, 33, 24, 0.1);
-    transform: translateY(-2px);
+  color: var(--cocoa);
+  &::placeholder {
+    color: #a07a52;
+  }
+  &:focus-visible {
+    outline: 3px solid var(--caramel-dark);
+    outline-offset: 1px;
   }
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 640px;
-  margin-top: 1rem;
-
-  label { display: flex; flex-direction: column; gap: 0.35rem; font-weight: 600; }
-  fieldset { border: 0; padding: 0; margin: 0; }
-  input, textarea { @include field; }
+@mixin soft-card {
+  background: var(--surface);
+  border-radius: var(--b-radius);
+  box-shadow: 0 5px 0 var(--line);
 }
 
-.button {
-  align-self: flex-start;
-  font: inherit;
-  font-weight: 600;
-  padding: 0.6rem 1.25rem;
-  color: #fff;
-  background: $accent;
-  border: 0;
-  border-radius: 8px;
-  cursor: pointer;
-  &:hover { background: $accent-dark; }
-  &:disabled { opacity: 0.6; cursor: wait; }
+// layout
+
+.page {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 40px 32px 96px;
+  min-height: 60vh;
+  @include mixins.phone {
+    padding: 28px 18px 72px;
+  }
 }
 
-.ratingPicker {
+.pageNarrow {
+  composes: page;
+  max-width: 760px;
+}
+
+.headerRow {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  legend { font-weight: 600; margin-bottom: 0.35rem; }
-  label { flex-direction: row; align-items: center; gap: 0.3rem; font-weight: 400; }
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-bottom: 28px;
+  a {
+    font-weight: 700;
+  }
 }
 
-.recipeBody {
-  display: grid;
-  gap: 2rem;
-  @media (min-width: 720px) { grid-template-columns: 1fr 2fr; }
-  ul, ol { padding-left: 1.25rem; li { margin-bottom: 0.5rem; } }
+.lead {
+  max-width: 32em;
+  margin: 12px 0 28px;
+  font-size: 19px;
+  color: var(--muted);
 }
 
-.reviews {
-  margin-top: 2.5rem;
-  border-top: 1px solid $line;
-  h3 { margin-top: 2rem; }
+.backLink {
+  display: inline-block;
+  margin-bottom: 18px;
+  font-weight: 700;
+  font-size: 15px;
 }
 
-.review {
-  padding: 1rem 0;
-  border-bottom: 1px solid $line;
-  p { margin: 0.25rem 0; }
+// text bits
+
+.muted {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+.error {
+  color: var(--danger);
+  font-weight: 700;
+  margin: 10px 0;
+}
+.success {
+  color: #2f6b3a;
+  font-weight: 700;
+  margin: 10px 0;
+}
+.notice {
+  margin: 0 0 24px;
+  padding: 14px 20px;
+  background: var(--honey-light);
+  border-radius: 20px;
+  font-weight: 600;
 }
 
-.dangerButton {
-  background: #b42318;
-  &:hover { background: #912018; }
+// buttons
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 28px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--cocoa);
+  color: var(--text-light);
+  font-family: var(--font-heading-stack);
+  font-weight: 600;
+  font-size: 19px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--cocoa-shadow);
+  transition: transform 0.1s, box-shadow 0.1s;
+  &:hover {
+    color: var(--text-light);
+  }
+  &:active {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 var(--cocoa-shadow);
+  }
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
 }
 
 .secondaryButton {
-  display: inline-block;
-  font: inherit;
-  font-weight: 600;
-  padding: 0.6rem 1.25rem;
-  color: $accent;
-  background: #fff;
-  border: 1px solid $accent;
-  border-radius: 8px;
-  text-decoration: none;
-  &:hover { background: $bg; }
+  composes: button;
+  background: var(--surface);
+  color: var(--cocoa);
+  box-shadow: 0 4px 0 var(--line);
+  &:hover {
+    color: var(--cocoa);
+    background: var(--honey-light);
+  }
+  &:active {
+    box-shadow: 0 1px 0 var(--line);
+  }
+}
+
+.yellowButton {
+  composes: button;
+  background: var(--butter);
+  color: var(--cocoa);
+  box-shadow: 0 4px 0 #d9b14f;
+  &:hover {
+    color: var(--cocoa);
+  }
+}
+
+.dangerButton {
+  background: var(--danger);
+  color: #fff;
+  box-shadow: 0 4px 0 #6e1810;
+  &:hover {
+    color: #fff;
+  }
+}
+
+.smallButton {
+  min-height: 40px;
+  padding: 6px 16px;
+  font-size: 15px;
+}
+
+.fullWidth {
+  width: 100%;
 }
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.75rem;
-  margin: 1rem 0;
+  gap: 12px;
+  margin: 0 0 32px;
 }
 
-.signInPrompt {
+// forms
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-weight: 800;
+  }
+  input:not([type='checkbox']):not([type='radio']),
+  textarea {
+    @include field;
+    font-weight: 400;
+  }
+  textarea {
+    resize: vertical;
+  }
+  > button[type='submit'] {
+    align-self: flex-start;
+  }
+}
+
+.formCard {
+  @include soft-card;
+  padding: 32px;
+  @include mixins.phone {
+    padding: 22px;
+  }
+}
+
+.dashedCard {
+  background: var(--surface);
+  border: 3px dashed var(--honey);
+  border-radius: 32px;
+  padding: 28px;
+  h3 {
+    margin-bottom: 16px;
+  }
+}
+
+.hint {
+  font-weight: 400;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.checkboxLabel {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 10px !important;
+  font-weight: 700 !important;
+  input {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--caramel);
+  }
+}
+
+.ratingPicker {
+  border: 0;
+  legend {
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .ratingOptions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  label {
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: center;
+    gap: 6px !important;
+    min-width: 58px;
+    min-height: 46px;
+    border-radius: 999px;
+    background: var(--honey-light);
+    cursor: pointer;
+    &:has(input:checked) {
+      background: var(--butter);
+      box-shadow: inset 0 0 0 2px var(--caramel);
+    }
+  }
+  input {
+    accent-color: var(--caramel);
+  }
+}
+
+// chips
+
+.chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 16px;
+  background: var(--butter);
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.chipRemovable {
+  composes: chip;
+  padding-right: 6px;
+}
+
+.chipRemove {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  &:hover {
+    background: rgba(97, 53, 3, 0.1);
+  }
+}
+
+.missingChip {
+  padding: 4px 14px;
+  border: 2px dashed #c99a62;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+// ratings
+
+.stars {
+  color: var(--caramel);
+  letter-spacing: 2px;
+}
+.starsOff {
+  color: var(--input-border);
+}
+
+.ratingPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--honey-light);
+  font-weight: 800;
+  font-size: 15px;
+  .star {
+    color: var(--caramel);
+  }
+  .count {
+    font-weight: 600;
+    color: var(--muted);
+  }
+}
+
+// recipe cards
+
+.grid {
+  display: grid;
+  gap: 26px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.card {
+  @include soft-card;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px;
+  color: var(--cocoa);
+  text-decoration: none;
+  transition: transform 0.15s;
+  &:hover {
+    color: var(--cocoa);
+    transform: translateY(-3px);
+  }
+}
+
+.cardIcon {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.cardTitle {
+  font-family: var(--font-heading-stack);
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 1.2;
+}
+
+.cardMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   max-width: 640px;
-  margin: 1rem 0;
-  padding: 1rem 1.25rem;
-  background: #fff;
-  border: 1px solid $line;
-  border-radius: 12px;
-  p { margin: 0 0 0.75rem; }
+  margin: 0 0 36px;
+  padding: 8px;
+  background: var(--surface);
+  border-radius: 999px;
+  box-shadow: 0 4px 0 var(--line);
+  input {
+    flex: 1 1 220px;
+    min-width: 0;
+    padding: 12px 20px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+  }
+  @include mixins.sm-phone {
+    border-radius: 28px;
+  }
+}
+
+.emptyState {
+  @include soft-card;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+  padding: 32px;
+  p {
+    flex: 1 1 260px;
+  }
+}
+
+// recipe page
+
+.titleBlock {
+  margin: 0 0 32px;
+  padding: 40px;
+  background: var(--honey);
+  border-radius: 40px 40px 40px 12px;
+  h1 {
+    max-width: 16em;
+    margin-bottom: 18px;
+  }
+  @include mixins.phone {
+    padding: 28px 24px;
+  }
+}
+
+.infoPills {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  li {
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--surface);
+  }
+}
+
+.recipeBody {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.ingredientsCard {
+  @include soft-card;
+  flex: 1 1 320px;
+  min-width: 0;
+  padding: 30px;
+  ul {
+    list-style: none;
+    margin: 4px 0 18px;
+  }
+  label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 48px;
+    padding: 0 10px;
+    border-radius: 16px;
+    cursor: pointer;
+    &:hover {
+      background: var(--honey-light);
+    }
+    &:has(input:checked) span {
+      text-decoration: line-through;
+      color: var(--muted);
+    }
+  }
+  input {
+    width: 22px;
+    height: 22px;
+    accent-color: var(--caramel);
+    flex-shrink: 0;
+  }
+}
+
+.steps {
+  flex: 999 1 520px;
+  min-width: 0;
+  h2 {
+    margin-bottom: 24px;
+  }
+  ol {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  li {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+  }
+  p {
+    padding-top: 10px;
+    font-size: 19px;
+    max-width: 34em;
+  }
+}
+
+.stepNum {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--butter);
+  font-family: var(--font-heading-stack);
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.reviews {
+  margin-top: 80px;
+  > h2 {
+    margin-bottom: 28px;
+  }
+}
+
+.reviewsLayout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.reviewList {
+  flex: 999 1 520px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.reviewSide {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+.bubbleRow {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--honey);
+  font-family: var(--font-heading-stack);
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.bubble {
+  background: var(--surface);
+  border-radius: 6px 26px 26px 26px;
+  padding: 18px 22px;
+  box-shadow: 0 4px 0 var(--line);
 }
 
 .reviewHeader {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 8px 16px;
+  margin-bottom: 6px;
+}
+
+// sign in
+
+.signInPrompt {
+  p {
+    margin-bottom: 14px;
+  }
+}
+
+.centered {
+  text-align: center;
+  .signInButtons {
+    justify-content: center;
+  }
+}
+
+.signInButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+// what can I make
+
+.matchList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 8px 0 24px;
+}
+
+.matchCard {
+  @include soft-card;
+  padding: 28px 30px;
+  @include mixins.phone {
+    padding: 22px;
+  }
+}
+
+.matchTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px 24px;
+  h2 {
+    font-size: 28px;
+    margin-bottom: 6px;
+    a {
+      color: var(--cocoa);
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.matchProgress {
+  flex: 0 1 260px;
+  min-width: 200px;
+  p {
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+}
+
+.progressTrack {
+  height: 14px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--caramel);
+}
+
+.tipRow {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  margin-top: 20px;
+}
+
+.tipBubble {
+  padding: 14px 18px;
+  background: var(--honey-light);
+  border-radius: 6px 22px 22px 22px;
+}
+
+.aiBadge {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 1px 10px;
+  border-radius: 999px;
+  background: var(--cocoa);
+  color: var(--text-light);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.matchCols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 40px;
+  margin-top: 20px;
+  > div {
+    flex: 1 1 280px;
+    min-width: 0;
+  }
+  h3 {
+    font-family: var(--font-body-stack);
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+}
+
+.substitutions {
+  padding-left: 20px;
+  li {
+    margin-bottom: 6px;
+  }
+}
+
+.changeIngredients {
+  margin: 0 0 36px;
+  // composes doesn't work on nested selectors, so this repeats .secondaryButton
+  summary {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 12px 24px;
+    border-radius: 999px;
+    background: var(--surface);
+    box-shadow: 0 4px 0 var(--line);
+    font-family: var(--font-heading-stack);
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    list-style: none;
+    &:hover {
+      background: var(--honey-light);
+    }
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+  &[open] summary {
+    margin-bottom: 20px;
+  }
+}
+
+// home
+
+.hero {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  gap: 48px;
+  padding: 24px 0 72px;
+  @include mixins.phone {
+    gap: 16px;
+    padding-top: 8px;
+  }
+}
+
+.heroText {
+  flex: 999 1 520px;
+  min-width: 0;
+}
+
+.heroArt {
+  flex: 1 1 320px;
+  display: grid;
+  place-items: center;
+}
+
+.blob {
+  width: min(100%, 400px);
+  // keep the form in view on phones
+  @include mixins.phone {
+    width: 170px;
+  }
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  background: var(--honey);
+  border-radius: 58% 42% 52% 48% / 46% 56% 44% 54%;
+  svg {
+    width: 78%;
+  }
+}
+
+.kitchenForm {
+  max-width: 600px;
+  padding: 28px;
+  background: var(--surface);
+  border: 3px solid var(--honey);
+  border-radius: 32px;
+  @include mixins.phone {
+    padding: 22px;
+  }
+}
+
+.kitchenTitle {
+  font-family: var(--font-heading-stack);
+  font-weight: 600;
+  font-size: 21px;
+  margin-bottom: 14px;
+}
+
+.kitchenRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  input {
+    @include field;
+    flex: 1 1 220px;
+    min-width: 0;
+    width: auto;
+    border-radius: 999px;
+  }
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 18px;
+  font-size: 15px;
+  color: var(--muted);
+  button {
+    padding: 4px 12px;
+    border: 2px dashed #c99a62;
+    border-radius: 999px;
+    background: transparent;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    &:hover {
+      background: var(--honey-light);
+    }
+  }
+}
+
+.shareBand {
+  margin-top: 24px;
+  svg {
+    display: block;
+    width: 100%;
+    height: 48px;
+  }
+}
+
+.shareInner {
+  background: var(--honey);
+  > div {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 40px 32px 72px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+  }
+  h2 {
+    font-size: 40px;
+    margin-bottom: 8px;
+  }
+  p {
+    font-size: 18px;
+  }
+}
+
+// grocery list
+
+.visuallyHidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.addToList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  .success,
+  .error {
+    margin: 0;
+  }
+}
+
+.groceryLayout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.groceryCard {
+  @include soft-card;
+  flex: 999 1 480px;
+  min-width: 0;
+  padding: 30px;
+  @include mixins.phone {
+    padding: 20px;
+  }
+}
+
+.groceryHeading {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.groceryItems {
+  list-style: none;
+}
+
+.groceryRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-top: 1px solid var(--line);
+  label {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 52px;
+    padding: 6px 4px;
+    cursor: pointer;
+  }
+  input {
+    width: 22px;
+    height: 22px;
+    accent-color: var(--caramel);
+    flex-shrink: 0;
+  }
+}
+
+.groceryName {
+  font-weight: 700;
+}
+
+.groceryBought .groceryName {
+  text-decoration: line-through;
+  color: var(--muted);
+  font-weight: 600;
 }

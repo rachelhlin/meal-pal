@@ -6,6 +6,7 @@ model Recipe {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   reviews      Review[] @relation("RecipeReviews")
+  groceryItems GroceryItem[]
   authorId     String?
   author       User?    @relation(fields: [authorId], references: [id], onDelete: SetNull)
 

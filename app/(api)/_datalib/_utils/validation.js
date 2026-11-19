@@ -8,7 +8,6 @@ export function forbidden(message = 'You can only change your own content') {
   return new GraphQLError(message, { extensions: { code: 'FORBIDDEN' } });
 }
 
-// Returns the signed-in user's id, or rejects the request.
 export function requireUser(context) {
   if (!context?.userId) {
     throw new GraphQLError('You must be signed in', {
@@ -18,7 +17,7 @@ export function requireUser(context) {
   return context.userId;
 }
 
-// GraphQL IDs arrive as strings; Prisma's Int ids need numbers.
+// graphql ids come in as strings but prisma wants ints
 export function toId(id) {
   const n = Number(id);
   if (!Number.isInteger(n) || n <= 0) throw badInput('Invalid id');

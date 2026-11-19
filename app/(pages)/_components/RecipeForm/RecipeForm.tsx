@@ -9,13 +9,12 @@ import styles from '../../_styles/ui.module.scss';
 const initialState: FormState = {};
 
 interface RecipeFormProps {
-  // Same shape as createRecipeAction; edit passes an action with the id already bound.
+  // edit page passes updateRecipeAction with the id already bound
   action: typeof createRecipeAction;
   submitLabel: string;
   defaults?: { title: string; ingredients: string; instructions: string };
 }
 
-// Used for both creating and editing a recipe.
 export default function RecipeForm({
   action,
   submitLabel,
@@ -36,7 +35,7 @@ export default function RecipeForm({
         />
       </label>
       <label>
-        Ingredients <span className={styles.muted}>(one per line)</span>
+        Ingredients <span className={styles.hint}>one per line</span>
         <textarea
           name="ingredients"
           required
@@ -46,7 +45,7 @@ export default function RecipeForm({
         />
       </label>
       <label>
-        Instructions <span className={styles.muted}>(one step per line)</span>
+        Instructions <span className={styles.hint}>one step per line</span>
         <textarea
           name="instructions"
           required

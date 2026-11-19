@@ -1,5 +1,18 @@
 [
-  { "name": "Home", "slug": "/" },
-  { "name": "Explore", "slug": "/explore" },
-  { "name": "Create", "slug": "/create" }
+  {
+    "name": "Explore",
+    "slug": "/explore"
+  },
+  {
+    "name": "What can I make?",
+    "slug": "/pantry"
+  },
+  {
+    "name": "Grocery list",
+    "slug": "/groceries"
+  },
+  {
+    "name": "Share a recipe",
+    "slug": "/create"
+  }
 ]

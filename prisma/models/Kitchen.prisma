@@ -1,0 +1,27 @@
+// saved ingredients and grocery list. key is the normalized name
+// ("3 large eggs" -> "egg") so the same thing only shows up once per user
+
+model PantryItem {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  name      String
+  key       String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, key])
+}
+
+model GroceryItem {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  name      String
+  key       String
+  checked   Boolean  @default(false)
+  recipeId  Int?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipe    Recipe?  @relation(fields: [recipeId], references: [id], onDelete: SetNull)
+
+  @@unique([userId, key])
+}

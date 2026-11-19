@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { notFound } from 'next/navigation';
 
 import RecipeForm from '../../../_components/RecipeForm/RecipeForm';
-import SignInButton from '../../../_components/SignInButton/SignInButton';
+import SignInOptions from '../../../_components/SignInButtons/SignInOptions';
 import { updateRecipeAction } from '../../../_actions/recipes';
 import gqlRequest from '../../../_utils/gqlRequest';
 import getCurrentUser from '../../../_utils/session';
@@ -41,11 +41,11 @@ export default async function EditRecipePage({
   const user = await getCurrentUser();
   if (!user) {
     return (
-      <main className={styles.page}>
-        <h1>Edit recipe</h1>
-        <div className={styles.signInPrompt}>
+      <main className={styles.pageNarrow}>
+        <h1 style={{ marginBottom: 24 }}>Edit recipe</h1>
+        <div className={`${styles.signInPrompt} ${styles.formCard}`}>
           <p>Sign in to edit your recipes.</p>
-          <SignInButton />
+          <SignInOptions />
         </div>
       </main>
     );
@@ -61,21 +61,23 @@ export default async function EditRecipePage({
   } catch {
     recipe = null;
   }
-  // Same 404 for "missing" and "not yours", so we don't reveal which recipes exist.
+  // 404 for both so you can't tell which ids exist
   if (!recipe || recipe.author?.id !== user.id) notFound();
 
   return (
-    <main className={styles.page}>
-      <h1>Edit recipe</h1>
-      <RecipeForm
-        action={updateRecipeAction.bind(null, recipe.id)}
-        submitLabel="Save changes"
-        defaults={{
-          title: recipe.title,
-          ingredients: recipe.ingredients,
-          instructions: recipe.instructions,
-        }}
-      />
+    <main className={styles.pageNarrow}>
+      <h1 style={{ marginBottom: 24 }}>Edit recipe</h1>
+      <div className={styles.formCard}>
+        <RecipeForm
+          action={updateRecipeAction.bind(null, recipe.id)}
+          submitLabel="Save changes"
+          defaults={{
+            title: recipe.title,
+            ingredients: recipe.ingredients,
+            instructions: recipe.instructions,
+          }}
+        />
+      </div>
     </main>
   );
 }

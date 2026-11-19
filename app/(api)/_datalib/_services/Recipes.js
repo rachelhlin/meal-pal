@@ -14,7 +14,6 @@ function cleanInput(input) {
   };
 }
 
-// Loads a recipe and makes sure `userId` owns it.
 async function findOwned(id, userId) {
   const recipe = await prisma.recipe.findUnique({ where: { id: toId(id) } });
   if (!recipe) throw badInput('Recipe not found');
@@ -39,7 +38,7 @@ export default class Recipes {
 
   static async remove({ id, userId }) {
     const recipe = await findOwned(id, userId);
-    // Reviews reference the recipe, so remove them in the same transaction.
+    // reviews point at the recipe so they have to go first
     await prisma.$transaction([
       prisma.review.deleteMany({ where: { recipeId: recipe.id } }),
       prisma.recipe.delete({ where: { id: recipe.id } }),

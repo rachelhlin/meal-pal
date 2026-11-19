@@ -1,0 +1,9 @@
+// ai calls per user per day, for the daily limit
+model AiUsage {
+  userId String
+  day    String // YYYY-MM-DD, utc
+  count  Int    @default(0)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, day])
+}
